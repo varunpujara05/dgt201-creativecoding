@@ -28,35 +28,40 @@ let To = 2;
           checkbox = createCheckbox('Animate', false);
           checkbox.position(0.1 * width, 0.575 * height);
           checkbox.style('font-size', '18px');
+          checkbox.style('color', 'white');  // Set checkbox label color to white
           
           // Create KaTeX render for T_p
           cn = createP();
           cn.style('font-size', '18px');
+          cn.style('color', 'white'); // Set text color to white
           cn.position(0.075 * width, 0.475 * height);
           katex.render("T_p", cn.elt);
           
           // Create KaTeX render for formula
           tex = createP();
           tex.style('font-size', '28px');
+          tex.style('color', 'white'); // Set text color to white
           tex.position(width * 0.4, height * 2 / 5);
           
           // KaTeX descriptions for graphs
           description1 = createP();
           description1.style('font-size', '18px');
-          description1.position(0.5 * width - 150, height * 0.3);  // Adjust position to center and move up
+          description1.style('color', 'white'); // Set text color to white
+          description1.position(0.5 * width - 150, height * 0.3); 
           katex.render("Periodic \\ Pulse \\ Waveform", description1.elt);
 
           description2 = createP();
           description2.style('font-size', '18px');
-          description2.position(0.5 * width - 150, height * 0.85);  // Adjust position to center
+          description2.style('color', 'white'); // Set text color to white
+          description2.position(0.5 * width - 150, height * 0.85);
           katex.render("Sinc \\ Function \\ in \\ Fourier \\ Series", description2.elt);
       }
 
       function draw() {
-          // White background
-          background(255);
+          // Black background
+          background(0);
           
-          fill(0); // black text color for better contrast
+          fill(255); // White text color for visibility on black background
           noStroke();
           textSize(17);
           textAlign(CENTER, CENTER);
@@ -70,7 +75,7 @@ let To = 2;
               T += speed.value();
           }
           
-          stroke(0); // black stroke for graph elements
+          stroke(255); // White stroke for graph elements
           // Graph drawing
           push();
           translate(0, -0.25 * height);
@@ -87,7 +92,7 @@ let To = 2;
           noFill();
           translate(0.5 * width, 0.75 * height);
           scale(0.5);
-          stroke(44, 206, 144); // green for sinc curve
+          stroke(44, 206, 144); // Green for sinc curve
           strokeWeight(4);
           beginShape();
           for (let x = -0.03 * width; x <= 0.03 * width; x += 0.01) {
@@ -102,7 +107,7 @@ let To = 2;
           translate(0.5 * width, 0.75 * height);
           scale(0.5);
           for (let x = 0; x <= 0.03 * width; x += k * T_p / T) {
-              stroke(50, 150, 50); // green for coefficient lines
+              stroke(50, 150, 50); // Green for coefficient lines
               strokeWeight(3);
               line(x_scale * x, 0, x_scale * x, -y_scale * sinc(x));
               strokeWeight(8);
@@ -110,7 +115,7 @@ let To = 2;
           }
           
           for (let x = 0; x >= -0.03 * width; x -= k * T_p / T) {
-              stroke(50, 150, 50); // green for coefficient lines
+              stroke(50, 150, 50); // Green for coefficient lines
               strokeWeight(3);
               line(x_scale * x, 0, x_scale * x, -y_scale * sinc(x));
               strokeWeight(8);
@@ -141,16 +146,11 @@ let To = 2;
           var d = concat(c, '}} \\right)');
           katex.render(d, tex.elt);
           pop();
-
-          fill(0);
-          textSize(18);
-          textAlign(CENTER, CENTER);
-          // Description text is now handled by KaTeX rendering
       }
 
       function graph() {
           noFill();
-          stroke(0); // black stroke for graph lines
+          stroke(255); // White stroke for graph lines
           strokeWeight(0.5);
           line(0.1 * width, 0.5 * height, 0.9 * width, 0.5 * height); // Horizontal line
           triangle(0.095 * width, 0.5 * height, 0.1 * width, 0.5 * height - 3, 0.1 * width, 0.5 * height + 3);
@@ -170,7 +170,7 @@ let To = 2;
           noFill();
           translate(0.5 * width, 0.25 * height);
           scale(0.5);
-          stroke(44, 206, 144); // red for ppf curve
+          stroke(44, 206, 144); // Green for ppf curve
           strokeWeight(4);
           beginShape();
           for (let x = 0; x <= 0.03 * width; x += T) {
